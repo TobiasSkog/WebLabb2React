@@ -5,7 +5,7 @@ export default function Home() {
 
       <div className="divider">
         <section className="content-container">
-          <div className="info-box">
+          <div className="info-box-root">
             <h1>Tobias Skog</h1>
           </div>
           <section className="home">

@@ -7,7 +7,7 @@ export default function CV() {
       return data.map((educationElement) => (
         <dl id="cv-edu" key={educationElement.Id}>
           <dt> {educationElement.Name} </dt>
-          <dd> {educationElement.Date} </dd>
+          <dd className="cv-date">  {educationElement.Date} </dd>
           <dd> {educationElement.Description} </dd>
         </dl>
       ));
@@ -15,7 +15,7 @@ export default function CV() {
       return data.map((experienceElement) => (
         <dl id="cv-exp" key={experienceElement.Id}>
           <dt> {experienceElement.Name} </dt>
-          <dd> {experienceElement.Date} </dd>
+          <dd className="cv-date"> {experienceElement.Date} </dd>
           <dd> {experienceElement.Description} </dd>
         </dl>
       ));
@@ -25,8 +25,8 @@ export default function CV() {
     <main>
 
       <aside className="cv-left-container">
-        <section className="content-container">
-          <div className="info-box">
+        <section className="cv-content-container">
+          <div className="info-box-root">
             <h1>Tobias Skog </h1>
           </div>
           <div className="img-container">
@@ -36,21 +36,21 @@ export default function CV() {
             <h2>Contact Information</h2>
           </div>
           <div className="info-row">
-            <i className="fas fa-envelope"></i>
+            <i className="fas fa-envelope" />
             <p>Skoog.tobias&#64;gmail&#46;com</p>
           </div>
           <div className="info-row">
-            <i className="fas fa-phone"></i>
+            <i className="fas fa-phone" />
             <p>+4763-660 15 76</p>
           </div>
           <div className="info-row">
-            <i className="fas fa-map-marker-alt"></i>
+            <i className="fas fa-map-marker-alt" />
             <p>Örnsköldsvik</p>
           </div>
           <div className="info-box">
             <h2>Socials</h2>
           </div>
-          <div className="info-row" >
+          <div className="info-row-social-links" >
             <a href="https://www.github.com/TobiasSkog" target="_blank" rel="noreferrer">
               <i className=" fa-brands fa-github" alt="GitHub" />
             </a>
@@ -62,7 +62,7 @@ export default function CV() {
 
       <div className="divider">
         <section className="content-container">
-          <div className="info-box">
+          <div className="info-box-root">
             <h2>Profile</h2>
           </div>
           <article className="cv">
@@ -147,8 +147,8 @@ export default function CV() {
           </article>
         </section>
       </div>
-
       <div className="side-border"></div>
+
     </main >
   );
 }

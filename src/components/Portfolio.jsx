@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 
 export default function Portfolio() {
-  const BASE_URL = 'https://api.github.com/users/TobiasSkog';
+  const BASE_URL = 'http://localhost:8000/portfolios';
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [repoData, setRepoData] = useState([]);
@@ -21,9 +21,9 @@ export default function Portfolio() {
     const fetchPosts = async () => {
       setIsLoading(true);
       try {
-        // const response = null;
-        const response = await fetch(`${BASE_URL}/repos`);
+        const response = await fetch(BASE_URL);
         if (!response.ok) {
+          console.log(response)
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const repos = await response.json();
@@ -64,7 +64,7 @@ export default function Portfolio() {
       <div className="side-border"></div>
       <div className="divider">
         <section className="content-container">
-          <div className="info-box">
+          <div className="info-box-root">
             <h1>Tobias Skog - Portfolio</h1>
           </div>
           <section className="portfolio"> {/* Root Element */}
@@ -79,21 +79,12 @@ export default function Portfolio() {
                   className={`portfolio-item ${activeModal === repo.id ? 'open' : 'closed'}`}
                   key={repo.id}
                   ref={popupRef}
-                  style={{
-                    maxHeight: activeModal === repo.id ? '100%' : '45px',
-                    height: activeModal === repo.id ? 'fit-content' : '45px'
-                  }}
                 >
                   <button className="button" onClick={() => toggleModal(repo.id)}>
                     {repo.updatedName}
                   </button>
                   <div
-                    className={`popup ${activeModal !== repo.id ? 'open' : 'closed'}`}
-                    style={{
-                      maxHeight: activeModal === repo.id ? 'fit-content' : 'none',
-                      height: activeModal === repo.id ? 'fit-content' : 'none',
-                      opacity: activeModal === repo.id ? '100%' : '0'
-                    }}
+                    className={`popup ${activeModal === repo.id ? 'open' : 'closed'}`}
                   >
                     <div className="popup-inner">
                       <h3>{repo.updatedName}</h3>
@@ -119,12 +110,3 @@ export default function Portfolio() {
     </main >
   );
 }
-// {activeModal === repo.id && ()}
-//                   <CSSTransition
-//                 key={repo.id}
-//                 in={activeModal === repo.id}
-//                 timeout={155}
-//                 classNames="portfolio-item"
-//                 nodeRef={popupRef}
-//               ></CSSTransition>
-
